@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#005A91" />
+  <title>E-Shopper & Metaverso · Experiencia de Avatar Digital</title>
+
+  <style>
+    :root{
+      --utadeo-blue:#005A91;
+      --utadeo-blue-dark:#003F68;
+      --utadeo-blue-soft:#EAF4FA;
+      --utadeo-pink:#FF0A7A;
+      --white:#FFFFFF;
+      --ink:#16212B;
+      --muted:#667789;
+      --line:#D9E3EA;
+      --panel:#F6F9FB;
+      --shadow:0 18px 50px rgba(0,63,104,.15);
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--ink);
+      background:
+        linear-gradient(180deg,#ffffff 0%,#f6fafc 38%,#eef5f8 100%);
+    }
+
+    a{text-decoration:none;color:inherit}
+    button{font:inherit;cursor:pointer}
+
+    .institution-bar{
+      background:var(--white);
+      border-top:4px solid #B7D9EC;
+      border-bottom:1px solid var(--line);
+    }
+
+    .institution-inner{
+      width:min(1180px,calc(100% - 28px));
+      margin:auto;
+      min-height:104px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .wordmark{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+
+    .mark{
+      width:76px;
+      height:64px;
+      position:relative;
+    }
+
+    .mark span{
+      position:absolute;
+      left:0;
+      width:70px;
+      height:8px;
+      background:var(--utadeo-blue);
+      transform:skewY(-8deg);
+      border-radius:2px;
+    }
+
+    .mark span:nth-child(1){top:5px}
+    .mark span:nth-child(2){top:17px;width:60px;left:8px}
+    .mark span:nth-child(3){top:29px;width:50px;left:16px}
+    .mark span:nth-child(4){top:41px;width:40px;left:24px}
+
+    .uni-copy strong{
+      display:block;
+      color:var(--utadeo-blue);
+      font-size:clamp(1.6rem,3vw,2.6rem);
+      letter-spacing:.02em;
+      line-height:1;
+    }
+
+    .uni-copy small{
+      display:block;
+      margin-top:6px;
+      color:var(--utadeo-blue-dark);
+      font-weight:800;
+      font-size:.82rem;
+    }
+
+    .course-chip{
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--utadeo-blue-soft);
+      color:var(--utadeo-blue-dark);
+      font-weight:900;
+      font-size:.82rem;
+      white-space:nowrap;
+    }
+
+    .nav{
+      background:var(--utadeo-blue);
+      color:var(--white);
+    }
+
+    .nav-inner{
+      width:min(1180px,calc(100% - 28px));
+      margin:auto;
+      min-height:58px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .nav-title{
+      font-weight:900;
+      letter-spacing:.01em;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:18px;
+      font-size:.88rem;
+      font-weight:800;
+      opacity:.95;
+    }
+
+    .wrap{
+      width:min(1180px,calc(100% - 28px));
+      margin:28px auto 64px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .viewer-card,
+    .info-panel,
+    .instruction-card{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:26px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero-copy{
+      padding:clamp(28px,5vw,58px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-height:560px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-copy::after{
+      content:"";
+      width:270px;
+      height:270px;
+      border-radius:50%;
+      position:absolute;
+      right:-110px;
+      bottom:-110px;
+      background:radial-gradient(circle,rgba(255,10,122,.14),transparent 65%);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      width:max-content;
+      padding:8px 12px;
+      border-radius:999px;
+      color:var(--utadeo-blue-dark);
+      background:var(--utadeo-blue-soft);
+      font-weight:900;
+      font-size:.78rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:18px 0 16px;
+      color:var(--utadeo-blue-dark);
+      font-size:clamp(2.6rem,6vw,5.2rem);
+      line-height:.93;
+      letter-spacing:-.055em;
+    }
+
+    h1 span{color:var(--utadeo-pink)}
+
+    .hero-copy p{
+      margin:0;
+      color:var(--muted);
+      font-size:1.05rem;
+      line-height:1.75;
+      max-width:640px;
+    }
+
+    .hero-actions{
+      margin-top:28px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      border:0;
+      border-radius:14px;
+      padding:13px 17px;
+      font-weight:900;
+      transition:.2s ease;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .btn-primary{
+      color:white;
+      background:var(--utadeo-pink);
+      box-shadow:0 12px 28px rgba(255,10,122,.22);
+    }
+
+    .btn-secondary{
+      color:var(--utadeo-blue-dark);
+      background:var(--utadeo-blue-soft);
+      border:1px solid #CFE4F1;
+    }
+
+    .viewer-card{
+      overflow:hidden;
+      min-height:560px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .viewer-head{
+      padding:18px 20px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+
+    .viewer-head strong{
+      color:var(--utadeo-blue-dark);
+    }
+
+    .live-badge{
+      padding:7px 10px;
+      border-radius:999px;
+      background:#EBFFF6;
+      color:#0D7A4F;
+      font-weight:900;
+      font-size:.74rem;
+    }
+
+    .viewer{
+      flex:1;
+      min-height:430px;
+      position:relative;
+      background:
+        radial-gradient(circle at 50% 80%,rgba(0,90,145,.12),transparent 34%),
+        linear-gradient(180deg,#f8fbfd,#edf4f8);
+    }
+
+    canvas{display:block;width:100%;height:100%}
+
+    .viewer-note{
+      position:absolute;
+      left:14px;
+      bottom:14px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.9);
+      color:var(--muted);
+      border:1px solid var(--line);
+      font-size:.74rem;
+      font-weight:800;
+      pointer-events:none;
+    }
+
+    .viewer-controls{
+      padding:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      border-top:1px solid var(--line);
+    }
+
+    .control{
+      padding:10px 12px;
+      border-radius:11px;
+      border:1px solid var(--line);
+      background:white;
+      color:var(--utadeo-blue-dark);
+      font-weight:850;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      margin-top:24px;
+    }
+
+    .info-panel,
+    .instruction-card{
+      padding:clamp(22px,4vw,34px);
+    }
+
+    .section-title{
+      margin:0 0 8px;
+      color:var(--utadeo-blue-dark);
+      font-size:1.7rem;
+      letter-spacing:-.02em;
+    }
+
+    .section-text{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .steps{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .step{
+      display:grid;
+      grid-template-columns:42px 1fr;
+      gap:12px;
+      align-items:start;
+      padding:14px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:16px;
+    }
+
+    .step-number{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      color:white;
+      background:var(--utadeo-blue);
+      font-weight:950;
+    }
+
+    .step strong{
+      display:block;
+      margin-bottom:4px;
+      color:var(--utadeo-blue-dark);
+    }
+
+    .step p{
+      margin:0;
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.5;
+    }
+
+    .file-rule{
+      margin-top:18px;
+      padding:18px;
+      border-radius:18px;
+      background:linear-gradient(135deg,#FFF0F7,#F2F8FC);
+      border:1px solid #F4C8DD;
+    }
+
+    .file-rule small{
+      display:block;
+      color:var(--muted);
+      margin-bottom:6px;
+      font-weight:800;
+    }
+
+    .filename{
+      display:inline-block;
+      padding:8px 10px;
+      border-radius:10px;
+      background:#101820;
+      color:#fff;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      font-weight:900;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:24px;
+    }
+
+    .card{
+      padding:20px;
+      border-radius:18px;
+      background:white;
+      border:1px solid var(--line);
+      box-shadow:0 8px 24px rgba(0,63,104,.07);
+    }
+
+    .card-icon{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background:var(--utadeo-blue-soft);
+      color:var(--utadeo-blue);
+      font-size:1.2rem;
+    }
+
+    .card h3{
+      margin:12px 0 7px;
+      color:var(--utadeo-blue-dark);
+      font-size:1rem;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.88rem;
+      line-height:1.52;
+    }
+
+    .footer{
+      margin-top:28px;
+      padding:18px 0 0;
+      text-align:center;
+      color:#7b8998;
+      font-size:.8rem;
+    }
+
+    .error{
+      display:none;
+      position:absolute;
+      inset:18px;
+      border:1px dashed #E45B83;
+      border-radius:18px;
+      background:rgba(255,255,255,.95);
+      z-index:5;
+      place-items:center;
+      text-align:center;
+      padding:24px;
+    }
+
+    .error strong{
+      display:block;
+      color:#B51F53;
+      margin-bottom:6px;
+    }
+
+    @media(max-width:960px){
+      .hero,
+      .content-grid{grid-template-columns:1fr}
+      .hero-copy{min-height:auto}
+      .cards{grid-template-columns:1fr 1fr}
+    }
+
+    @media(max-width:680px){
+      .institution-inner{
+        align-items:flex-start;
+        padding:18px 0;
+        flex-direction:column;
+      }
+
+      .nav-links{display:none}
+      .hero{gap:18px}
+      .cards{grid-template-columns:1fr}
+      .viewer{min-height:400px}
+      .wordmark{align-items:flex-start}
+      .mark{width:58px;height:54px}
+      .mark span{width:54px}
+      .mark span:nth-child(2){width:46px}
+      .mark span:nth-child(3){width:38px}
+      .mark span:nth-child(4){width:30px}
+    }
+  </style>
+
+  <script type="importmap">
+  {
+    "imports":{
+      "three":"https://cdn.jsdelivr.net/npm/three@0.181.1/build/three.module.js",
+      "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.181.1/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <header class="institution-bar">
+    <div class="institution-inner">
+      <div class="wordmark">
+        <div class="mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="uni-copy">
+          <strong>UTADEO</strong>
+          <small>Universidad de Bogotá Jorge Tadeo Lozano</small>
+        </div>
+      </div>
+
+      <span class="course-chip">E-Shopper & Metaverso</span>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-title">Experiencia de Avatar Digital</div>
+      <div class="nav-links">
+        <a href="#experiencia">Experiencia</a>
+        <a href="#instrucciones">Cómo funciona</a>
+        <a href="#conceptos">Conceptos</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero" id="experiencia">
+      <article class="hero-copy">
+        <span class="eyebrow">Segundo corte · Experiencia inmersiva</span>
+
+        <h1>
+          Tu avatar<br>
+          <span>cobra vida en la web.</span>
+        </h1>
+
+        <p>
+          Esta experiencia muestra cómo un personaje animado con Mixamo puede
+          integrarse dentro de una página web utilizando Three.js. El objetivo
+          es comprender el flujo completo: personaje, rigging, animación,
+          archivo FBX y publicación digital.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#avatar">Ver avatar</a>
+          <a class="btn btn-secondary" href="#instrucciones">Cómo reemplazarlo</a>
+        </div>
+      </article>
+
+      <article class="viewer-card" id="avatar">
+        <div class="viewer-head">
+          <div>
+            <strong>Avatar 3D interactivo</strong>
+            <div style="margin-top:3px;color:#667789;font-size:.78rem">
+              Archivo esperado: avatar.fbx
+            </div>
+          </div>
+          <span class="live-badge">● EN VIVO</span>
+        </div>
+
+        <div class="viewer" id="viewer">
+          <div class="error" id="errorBox">
+            <div>
+              <strong>No se encontró avatar.fbx</strong>
+              <span>
+                Verifica que el archivo esté en la misma carpeta que index.html
+                y conserve exactamente ese nombre.
+              </span>
+            </div>
+          </div>
+          <div class="viewer-note">Arrastra para rotar · rueda para zoom</div>
+        </div>
+
+        <div class="viewer-controls">
+          <button class="control" id="playBtn">▶ Play</button>
+          <button class="control" id="pauseBtn">⏸ Pause</button>
+          <button class="control" id="replayBtn">↻ Replay</button>
+          <button class="control" id="resetCameraBtn">◎ Cámara</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="content-grid" id="instrucciones">
+      <article class="instruction-card">
+        <h2 class="section-title">Reemplaza tu avatar</h2>
+        <p class="section-text">
+          No necesitas modificar el código. Solo reemplaza el archivo FBX por
+          el personaje animado que descargaste desde Mixamo.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div>
+              <strong>Selecciona una animación</strong>
+              <p>Elige tu personaje y movimiento dentro de Mixamo.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div>
+              <strong>Descarga el FBX</strong>
+              <p>Descarga el personaje con su animación incluida.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div>
+              <strong>Renombra el archivo</strong>
+              <p>No importa el nombre original que tenga al descargarlo.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <div>
+              <strong>Reemplázalo en la carpeta</strong>
+              <p>Conserva index.html y el nuevo FBX juntos.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="file-rule">
+          <small>EL NOMBRE DEBE SER EXACTAMENTE:</small>
+          <span class="filename">avatar.fbx</span>
+        </div>
+      </article>
+
+      <article class="info-panel">
+        <h2 class="section-title">¿Qué estás viendo?</h2>
+        <p class="section-text">
+          Un archivo FBX puede contener el modelo, esqueleto y animación del
+          personaje. Three.js lo interpreta dentro del navegador y
+          AnimationMixer reproduce su movimiento en tiempo real.
+        </p>
+
+        <div class="file-rule" style="margin-top:22px;border-color:#CFE4F1;background:#F2F8FC">
+          <small>ESTRUCTURA DE LA CARPETA</small>
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1.8;color:#003F68;font-weight:800">
+            MiAvatarWeb/<br>
+            ├── index.html<br>
+            └── avatar.fbx
+          </div>
+        </div>
+
+        <div style="margin-top:22px;padding:18px;border-radius:18px;background:#FFF7FB;border:1px solid #F6D0E2">
+          <strong style="display:block;color:#B51F53;margin-bottom:6px">
+            Idea clave
+          </strong>
+          <span style="color:#667789;line-height:1.55">
+            El movimiento también construye identidad digital. Cambiar la
+            animación cambia la percepción del mismo avatar.
+          </span>
+        </div>
+      </article>
+    </section>
+
+    <section class="cards" id="conceptos">
+      <article class="card">
+        <div class="card-icon">👤</div>
+        <h3>Avatar</h3>
+        <p>Representación digital de un personaje dentro de una experiencia interactiva.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🦴</div>
+        <h3>Rigging</h3>
+        <p>Esqueleto digital que permite articular y controlar el movimiento del personaje.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🎬</div>
+        <h3>Mixamo</h3>
+        <p>Plataforma para aplicar rigging y animaciones a personajes humanoides.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🌐</div>
+        <h3>Three.js</h3>
+        <p>Biblioteca JavaScript que permite representar contenido 3D dentro del navegador.</p>
+      </article>
+    </section>
+
+    <div class="footer">
+      Universidad de Bogotá Jorge Tadeo Lozano · E-Shopper & Metaverso · Experiencia académica
+    </div>
+  </main>
+
+  <script type="module">
+    import * as THREE from "three";
+    import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+    const container = document.querySelector("#viewer");
+    const errorBox = document.querySelector("#errorBox");
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(
+      42,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      3000
+    );
+
+    const renderer = new THREE.WebGLRenderer({
+      antialias:true,
+      alpha:true
+    });
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    renderer.setSize(container.clientWidth,container.clientHeight);
+    renderer.shadowMap.enabled=true;
+    renderer.outputColorSpace=THREE.SRGBColorSpace;
+    container.prepend(renderer.domElement);
+
+    const hemi = new THREE.HemisphereLight(0xffffff,0x476176,2.5);
+    scene.add(hemi);
+
+    const key = new THREE.DirectionalLight(0xffffff,3);
+    key.position.set(4,7,5);
+    key.castShadow=true;
+    scene.add(key);
+
+    const fill = new THREE.DirectionalLight(0x78b7db,1.5);
+    fill.position.set(-4,4,-3);
+    scene.add(fill);
+
+    const floor = new THREE.Mesh(
+      new THREE.CircleGeometry(3.5,96),
+      new THREE.MeshStandardMaterial({
+        color:0xdfeaf0,
+        roughness:.9,
+        metalness:.02
+      })
+    );
+
+    floor.rotation.x=-Math.PI/2;
+    floor.receiveShadow=true;
+    scene.add(floor);
+
+    const controls = new OrbitControls(camera,renderer.domElement);
+    controls.enableDamping=true;
+    controls.minDistance=2.1;
+    controls.maxDistance=9;
+
+    const initialCamera = new THREE.Vector3(3.2,2.3,5.6);
+    const initialTarget = new THREE.Vector3(0,1.2,0);
+
+    camera.position.copy(initialCamera);
+    controls.target.copy(initialTarget);
+
+    let mixer=null;
+    let action=null;
+    let model=null;
+
+    const clock = new THREE.Clock();
+
+    function fitModel(object){
+      let box = new THREE.Box3().setFromObject(object);
+      let size = box.getSize(new THREE.Vector3());
+
+      let scale=1;
+      if(size.y>15) scale=.01;
+      if(size.y<.5) scale=2;
+
+      object.scale.setScalar(scale);
+
+      box = new THREE.Box3().setFromObject(object);
+      const center = box.getCenter(new THREE.Vector3());
+
+      object.position.x -= center.x;
+      object.position.z -= center.z;
+      object.position.y -= box.min.y;
+
+      box = new THREE.Box3().setFromObject(object);
+      size = box.getSize(new THREE.Vector3());
+
+      controls.target.set(0,Math.max(.8,size.y*.48),0);
+
+      const distance=Math.max(4.4,size.y*1.5);
+
+      camera.position.set(
+        Math.max(2.8,size.y*.9),
+        Math.max(1.8,size.y*.65),
+        distance
+      );
+
+      controls.update();
+    }
+
+    const loader = new FBXLoader();
+
+    loader.load(
+      "./avatar.fbx",
+      object=>{
+        model=object;
+
+        object.traverse(child=>{
+          if(child.isMesh){
+            child.castShadow=true;
+            child.receiveShadow=true;
+
+            const mats=Array.isArray(child.material)
+              ? child.material
+              : [child.material];
+
+            mats.filter(Boolean).forEach(mat=>{
+              mat.side=THREE.DoubleSide;
+            });
+          }
+        });
+
+        fitModel(object);
+        scene.add(object);
+
+        if(object.animations && object.animations.length){
+          mixer=new THREE.AnimationMixer(object);
+          action=mixer.clipAction(object.animations[0]);
+          action.play();
+        }
+
+        errorBox.style.display="none";
+      },
+      undefined,
+      error=>{
+        console.error("No fue posible cargar avatar.fbx",error);
+        errorBox.style.display="grid";
+      }
+    );
+
+    document.querySelector("#playBtn").addEventListener("click",()=>{
+      if(action){
+        action.paused=false;
+        action.play();
+      }
+    });
+
+    document.querySelector("#pauseBtn").addEventListener("click",()=>{
+      if(action) action.paused=true;
+    });
+
+    document.querySelector("#replayBtn").addEventListener("click",()=>{
+      if(action){
+        action.reset();
+        action.paused=false;
+        action.play();
+      }
+    });
+
+    document.querySelector("#resetCameraBtn").addEventListener("click",()=>{
+      if(model){
+        fitModel(model);
+      }else{
+        camera.position.copy(initialCamera);
+        controls.target.copy(initialTarget);
+        controls.update();
+      }
+    });
+
+    function resize(){
+      const w=container.clientWidth;
+      const h=container.clientHeight;
+
+      camera.aspect=w/h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w,h);
+    }
+
+    window.addEventListener("resize",resize);
+
+    function animate(){
+      requestAnimationFrame(animate);
+
+      const delta=clock.getDelta();
+      if(mixer) mixer.update(delta);
+
+      controls.update();
+      renderer.render(scene,camera);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
