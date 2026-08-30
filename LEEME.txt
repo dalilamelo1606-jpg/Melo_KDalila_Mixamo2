@@ -1,0 +1,49 @@
+PLANTILLA · EXPERIENCIA DE AVATAR DIGITAL
+Universidad de Bogotá Jorge Tadeo Lozano
+Curso: E-Shopper & Metaverso
+
+ARCHIVOS
+- index.html
+- avatar.fbx
+
+INSTRUCCIÓN PARA EL ESTUDIANTE
+
+1. Ingresa a Mixamo.
+2. Selecciona un personaje.
+3. Selecciona una animación.
+4. Descarga el archivo FBX con personaje y animación.
+5. Renombra el archivo descargado exactamente como:
+
+avatar.fbx
+
+6. Reemplaza el archivo avatar.fbx incluido en esta carpeta.
+7. NO modifiques index.html.
+8. Ejecuta la página mediante un servidor local.
+
+EJECUCIÓN LOCAL
+
+Abre PowerShell, CMD o Git Bash dentro de la carpeta y ejecuta:
+
+python -m http.server 8000
+
+Luego abre:
+
+http://localhost:8000
+
+PUBLICACIÓN EN GITHUB PAGES
+
+La estructura debe mantenerse así:
+
+MiAvatarWeb/
+├── index.html
+└── avatar.fbx
+
+Sube ambos archivos al mismo repositorio y activa GitHub Pages desde:
+Settings > Pages > Deploy from a branch > main > /(root)
+
+IMPORTANTE
+
+- El nombre avatar.fbx debe mantenerse exactamente.
+- Si el archivo FBX supera 25 MB, GitHub puede impedir cargarlo desde el navegador.
+  En ese caso súbelo mediante Git.
+- GitHub no permite archivos individuales mayores de 100 MB mediante Git convencional.
